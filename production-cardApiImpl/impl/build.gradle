@@ -1,0 +1,68 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id "org.flywaydb.flyway" version "8.0.0-beta2"
+    id 'com.google.cloud.tools.jib' version '3.1.4'
+}
+
+group = 'kz.reself'
+version = '0.0.1-SNAPSHOT'
+
+jib.to.image='docker.io/26093/umag:prod-card'
+
+
+configurations {
+    implementationOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-actuator:2.5.4"
+
+    implementation "org.springframework.boot:spring-boot-starter-amqp:2.5.4"
+    implementation "org.springframework.boot:spring-boot-starter-data-rest:2.5.4"
+    implementation "org.springframework.boot:spring-boot-starter-web:2.5.4"
+    implementation "org.springframework.boot:spring-boot-configuration-processor:2.5.4"
+    implementation "org.springframework.boot:spring-boot-starter-tomcat:2.5.4"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:2.5.4"
+    implementation 'org.postgresql:postgresql:42.2.23.jre7'
+    implementation "io.springfox:springfox-swagger2:3.0.0"
+    implementation 'org.flywaydb:flyway-core:7.15.0'
+    implementation "io.springfox:springfox-boot-starter:3.0.0"
+    implementation "io.springfox:springfox-swagger-ui:3.0.0"
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+}
+
+
+flyway{
+    url = "jdbc:postgresql://${System.getenv("DB_HOST")?:"localhost"}:5432/${System.getenv("DB_NAME")?:"production"}"
+    user = "${System.getenv("POSTGRES_USER")?:"prod"}"
+    password = "${System.getenv("POSTGRES_PASSWORD")?:"prod123!"}"
+}
+task prefixNewMigrations(group: 'flyway') {
+
+    fileTree(dir: getProjectDir().toString() + '/src/main/resources/db/migration').exclude({ isFilePrefixed(it.file) }).exclude('callbacks').each {
+        file ->
+            doLast {
+                def timestamp = new Date().format('yyyyMMddHHmmssSSS', TimeZone.getTimeZone('GMT'))
+                println "Renaming $file.name to ${timestamp}__$file.name"
+                file.renameTo("$file.parentFile.absolutePath$file.separator${timestamp}__$file.name")
+                sleep(1 * 1000)
+            }
+    }
+}
+
+static def isFilePrefixed(file) {
+    return (file.name ==~ '^\\d+__.*\\.sql\$')
+}
+
+test {
+    useJUnitPlatform()
+}

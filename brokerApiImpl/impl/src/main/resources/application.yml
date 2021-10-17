@@ -1,0 +1,32 @@
+server:
+  port: 7081
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          enabled: ${RABBIT_LISTENER_ENABLED:true}
+          initial-interval: 100ms
+          max-attempts: 3
+          max-interval: 60000ms
+          multiplier: 3
+    host: ${RABBIT_HOST:localhost}
+request:
+  url: ${REQUEST_URL:https://web.umag.kz/rest/cabinet/opr/decomission/create}
+prod:
+  url: ${PROD_URL:http://localhost:7070/production}
+  card:
+    url: ${PROD_CARD_URL:http://localhost:7080/production/card}
+    item:
+      url: ${PROD_CARD_ITEM_URL:http://localhost:7080/prod/card/item}
+basic:
+  auth:
+    url: ${BASIC_AUTH_URL:Basic Kzc3NjIxMTAwMDAxOjEyM3F3ZTEyM1FXRQ==}
+    api-version: ${BASIC_AUTH_API_VERSION:1.4}
+    client-version: ${BASIC_AUTH_CLIENT_VERSION:angular_cabinet_0.24.06}
+management:
+  endpoint:
+    health:
+      show-details: always

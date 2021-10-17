@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/brokerApiImpl" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../Program Files (x86)/gradle-6.9.1" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/brokerApiImpl" />
+            <option value="$PROJECT_DIR$/brokerApiImpl/api" />
+            <option value="$PROJECT_DIR$/brokerApiImpl/impl" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/production-cardApiImpl" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../Program Files (x86)/gradle-6.9.1" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/production-cardApiImpl" />
+            <option value="$PROJECT_DIR$/production-cardApiImpl/api" />
+            <option value="$PROJECT_DIR$/production-cardApiImpl/impl" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/production-cardApiImpl/api" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../Program Files (x86)/gradle-6.9.1" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/production-cardApiImpl/api" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/productionApiImpl" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../Program Files (x86)/gradle-6.9.1" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/productionApiImpl" />
+            <option value="$PROJECT_DIR$/productionApiImpl/api" />
+            <option value="$PROJECT_DIR$/productionApiImpl/impl" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

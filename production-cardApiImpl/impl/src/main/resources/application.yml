@@ -1,0 +1,35 @@
+server:
+  port: 7080
+
+spring:
+  datasource:
+    password: ${POSTGRES_PASSWORD:prod123!}
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/${DB_NAME:production}?createDatabaseIfNotExist=true&autoReconnect=true
+    username: ${POSTGRES_USER:prod}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 3s
+          max-attempts: 3
+          max-interval: 100
+          multiplier: 2
+    host: ${RABBIT_HOST:localhost}
+  flyway:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/${DB_NAME:production}
+    password: ${POSTGRES_PASSWORD:prod123!}
+    user: ${POSTGRES_USER:prod}
+    locations:
+      - 'classpath:db/migration'
+    create-schemas: true
+    schemas:
+      - 'public'
+management:
+  endpoint:
+    health:
+      show-details: always

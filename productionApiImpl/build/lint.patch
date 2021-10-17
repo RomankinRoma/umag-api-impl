@@ -1,0 +1,27 @@
+diff --git a/api\build.gradle b/api\build.gradle
+--- a/api\build.gradle
++++ b/api\build.gradle
+@@ -9,8 +9,4 @@
+ dependencies {
+     implementation "org.springframework.boot:spring-boot-starter-web:2.5.4"
+-    implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
+-    implementation 'com.google.guava:guava:30.1.1-jre'
+-    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+-    compileOnly 'org.projectlombok:lombok:1.18.20'
+     annotationProcessor 'org.projectlombok:lombok:1.18.20'
+ }
+diff --git a/impl\build.gradle b/impl\build.gradle
+--- a/impl\build.gradle
++++ b/impl\build.gradle
+@@ -29,11 +29,8 @@
+     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+     implementation 'org.springframework.boot:spring-boot-starter-web'
+     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+-    compileOnly 'org.projectlombok:lombok'
+-    annotationProcessor 'org.projectlombok:lombok'
+ 
+     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+-    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+ }
+ 
+ dependencyManagement {
